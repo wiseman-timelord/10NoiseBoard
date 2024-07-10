@@ -8,6 +8,7 @@ Alpha. Very early stages, working between, gpt4 and claude sonnet.
 ## DESCRIPTION
 - A custom noise bar for 8 samples done in gradio.
 - Samples will be able to be played in common formats.
+- Persistent Settings from Yaml File in `.\data`.
 
 ### PREVIEW
 - Heres how the Main Page is shaping up...
