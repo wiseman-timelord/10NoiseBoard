@@ -1,4 +1,4 @@
-# Noise10Board
+# Noise8Board
 
 ### STATUS
 Alpha. Very early stages, working between, gpt4 and claude sonnet.
