@@ -2,8 +2,9 @@
 
 ### STATUS
 Alpha. Very early stages, working between, gpt4 and claude sonnet.
-- Gradio Interface looks "Good Enough".
-- Test and Debug. Ensure to try multiple formats.
+- It is silently exiting at the end of playing a sample, this now requires detailed debut statements and investigating.
+- Further Test and Debug. 
+- Ensure to try multiple formats.
 
 ## DESCRIPTION
 - A custom noise bar for 8 samples done in gradio.
