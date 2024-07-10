@@ -1,7 +1,7 @@
 # Noise8Board
 
 ### STATUS
-Alpha. Very early stages, using both, gpt4 and claude sonnet. End of second session...
+Alpha. Very early stages, using both, gpt4 and claude sonnet. The current issues are...
 - It is silently exiting at the end of playing a sample, this now requires detailed debut statements and investigating.
 - Further Test and Debug. 
 - Ensure to try multiple formats.
