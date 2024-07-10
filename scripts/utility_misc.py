@@ -1,40 +1,30 @@
 # .\scripts\utility_misc.py
 
-# Imports Froms
 import sounddevice as sd
 import yaml
 import os
 from pydub import AudioSegment
 
 def get_soundcard_list():
-    devices = sd.query_devices()
-    soundcards = [device['name'] for device in devices if device['max_output_channels'] > 0]
-    return soundcards
+    return [device['name'] for device in sd.query_devices() if device['max_output_channels'] > 0]
 
-def load_settings(settings_path='.\data\settings_general.yaml'):
-    if os.path.exists(settings_path):
-        with open(settings_path, 'r') as f:
-            settings = yaml.safe_load(f)
-            samples = settings.get('samples', [''] * 8)
-            selected_soundcard = settings.get('selected_soundcard', '')
-            volume = settings.get('volume', 100)
-    else:
-        samples = [''] * 8
-        selected_soundcard = ""
-        volume = 100
-    return samples, selected_soundcard, volume
-
-def unload_samples():
-    return [''] * 8, [""] * 8 + [""] * 8  # Return empty samples and empty values for both filename and length
-
-def save_settings(samples, selected_soundcard, volume, settings_path='.\data\settings_general.yaml'):
-    with open(settings_path, 'w') as f:
-        yaml.safe_dump({'samples': samples, 'selected_soundcard': selected_soundcard, 'volume': volume}, f)
+def manage_settings(action='load', samples=None, selected_soundcard=None, volume=None, settings_path='./data/settings_general.yaml'):
+    if action == 'load':
+        if os.path.exists(settings_path):
+            with open(settings_path, 'r') as f:
+                settings = yaml.safe_load(f)
+                return (settings.get('samples', [''] * 8),
+                        settings.get('selected_soundcard', ''),
+                        settings.get('volume', 100))
+        return [''] * 8, "", 100
+    elif action == 'save':
+        with open(settings_path, 'w') as f:
+            yaml.safe_dump({'samples': samples, 'selected_soundcard': selected_soundcard, 'volume': volume}, f)
 
 def get_sample_length(file_path):
     try:
         audio = AudioSegment.from_wav(file_path)
-        return f"Length: {int(audio.duration_seconds // 60):02}:{int(audio.duration_seconds % 60):02}"
+        return f"{int(audio.duration_seconds // 60):02}:{int(audio.duration_seconds % 60):02}"
     except:
         return "Length: Unknown"
 
